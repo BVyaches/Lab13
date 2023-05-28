@@ -10,13 +10,13 @@ namespace NewHashTable
     {
         public string CollectionName { get; set; }
         public string ChangeType { get; set; }
-        public object Source { get; set; }
+        public object Item { get; set; }
 
-        public CollectionHandlerEventArgs(string collectionName, string changeType, object source)
+        public CollectionHandlerEventArgs(string collectionName, string changeType, object item)
         {
             CollectionName = collectionName;
             ChangeType=changeType;
-            Source=source;
+            Item=item;
         }
     }
 }

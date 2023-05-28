@@ -11,24 +11,24 @@ namespace TestJournal
         public void JournalCollectionCountChangedAddsJournalEntryToListTest()
         {
             Journal journal = new Journal();
-            CollectionHandlerEventArgs eventArgs = new CollectionHandlerEventArgs("CollectionName", "ChangeType", "SourceString");
+            CollectionHandlerEventArgs eventArgs = new CollectionHandlerEventArgs("CollectionName", "ChangeType", "ItemString");
 
             journal.CollectionCountChanged(null, eventArgs);
 
             Assert.AreEqual(1, journal.JournalData.Count);
-            Assert.AreEqual("ChangeType в коллекции CollectionName: SourceString\n", journal.JournalData[0].ToString());
+            Assert.AreEqual("ChangeType в коллекции CollectionName: ItemString\n", journal.JournalData[0].ToString());
         }
 
         [TestMethod]
         public void JournalCollectionReferenceChangedAddsJournalEntryToListTest()
         {
             Journal journal = new Journal();
-            CollectionHandlerEventArgs eventArgs = new CollectionHandlerEventArgs("CollectionName", "ChangeType", "SourceString");
+            CollectionHandlerEventArgs eventArgs = new CollectionHandlerEventArgs("CollectionName", "ChangeType", "ItemString");
 
             journal.CollectionReferenceChanged(null, eventArgs);
 
             Assert.AreEqual(1, journal.JournalData.Count);
-            Assert.AreEqual("ChangeType в коллекции CollectionName: SourceString\n", journal.JournalData[0].ToString());
+            Assert.AreEqual("ChangeType в коллекции CollectionName: ItemString\n", journal.JournalData[0].ToString());
         }
 
         [TestMethod]

@@ -32,7 +32,11 @@ namespace NewHashTable
             Name = name;
         }
         
-
+        /// <summary>
+        /// Добавление элемента
+        /// </summary>
+        /// <param name="data">Элемент для добавления</param>
+        /// <param name="isForChanged">Вызов для изменения элемента или нет</param>
         public override void Add(T data, bool isForChanged)
         {
             base.Add(data, isForChanged);
@@ -46,6 +50,12 @@ namespace NewHashTable
             OnCountChanged(this, new CollectionHandlerEventArgs(Name, "Добавление", data));
         }
 
+
+        /// <summary>
+        /// Удаление элемента
+        /// </summary>
+        /// <param name="data">Ключ элемента для удаления</param>
+        /// <returns></returns>
         public override bool Remove(T data)
         {
             bool result  = base.Remove(data);

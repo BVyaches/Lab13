@@ -10,17 +10,17 @@ namespace NewHashTable
     {
         public string CollectionName { get; set; }
         public string ChangeType { get; set; }
-        public string SourceString { get; set; }
-        public JournalEntry(string collectionName, string changeType, string sourceString)
+        public string ItemString { get; set; }
+        public JournalEntry(string collectionName, string changeType, string itemString)
         {
             CollectionName = collectionName;
             ChangeType = changeType;
-            SourceString = sourceString;
+            ItemString = itemString;
         }
 
         public override string ToString()
         {
-            return $"{ChangeType} в коллекции {CollectionName}: {SourceString}\n";
+            return $"{ChangeType} в коллекции {CollectionName}: {ItemString}\n";
         }
     }
 
@@ -34,13 +34,13 @@ namespace NewHashTable
 
         public void CollectionCountChanged(object source, CollectionHandlerEventArgs e)
         {
-            JournalEntry je = new(e.CollectionName, e.ChangeType, e.Source.ToString());
+            JournalEntry je = new(e.CollectionName, e.ChangeType, e.Item.ToString());
             JournalData.Add(je);
         }
 
         public void CollectionReferenceChanged(object source, CollectionHandlerEventArgs e)
         {
-            JournalEntry je = new(e.CollectionName, e.ChangeType, e.Source.ToString());
+            JournalEntry je = new(e.CollectionName, e.ChangeType, e.Item.ToString());
             JournalData.Add(je);
         }
 

@@ -8,33 +8,28 @@ namespace TestCollections
     [TestClass]
     public class NewHashTableTests
     {
-
         [TestMethod]
-        public void Add_WhenNewItemAdded_CountChangedEventRaised()
+        public void NewHashTableAddNewItemAddedCountChangedEventRaisedTest()
         {
-            // Arrange
             NewHashTable<Challenge> hashTable = new("TestHashTable");
             Challenge item = new("Математика", 25, "Ирина");
             bool eventRaised = false;
             hashTable.CollectionCountChanged += (sender, args) =>
             {
-                if (args.ChangeType == "Добавление" && args.Source == item)
+                if (args.ChangeType == "Добавление" && args.Item == item)
                 {
                     eventRaised = true;
                 }
             };
 
-            // Act
             hashTable.Add(item);
 
-            // Assert
             Assert.IsTrue(eventRaised);
         }
 
         [TestMethod]
-        public void Add_WhenExistingItemAdded_ReferenceChangedEventRaised()
+        public void NewHashTableAddExistingItemAddedReferenceChangedEventRaisedTest()
         {
-            // Arrange
             NewHashTable<Challenge> hashTable = new("TestHashTable");
             Challenge item = new("Математика", 25, "Павел");
             Challenge changedItem = new();
@@ -42,39 +37,34 @@ namespace TestCollections
             bool eventRaised = false;
             hashTable.CollectionReferenceChanged += (sender, args) =>
             {
-                if (args.ChangeType == "Изменение" && args.Source == changedItem)
+                if (args.ChangeType == "Изменение" && args.Item == changedItem)
                 {
                     eventRaised = true;
                 }
             };
 
-            // Act
             hashTable[item] = changedItem;
 
-            // Assert
             Assert.IsTrue(eventRaised);
         }
 
         [TestMethod]
-        public void Remove_WhenItemRemoved_CountChangedEventRaised()
+        public void NewHashTableRemoveItemRemovedCountChangedEventRaisedTest()
         {
-            // Arrange
             NewHashTable<Challenge> hashTable = new("TestHashTable");
             Challenge item = new("Математика", 25, "Ирина");
             hashTable.Add(item);
             bool eventRaised = false;
             hashTable.CollectionCountChanged += (sender, args) =>
             {
-                if (args.ChangeType == "Удаление" && args.Source == item)
+                if (args.ChangeType == "Удаление" && args.Item == item)
                 {
                     eventRaised = true;
                 }
             };
 
-            // Act
             hashTable.Remove(item);
 
-            // Assert
             Assert.IsTrue(eventRaised);
         }
     }
